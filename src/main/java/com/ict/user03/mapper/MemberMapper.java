@@ -31,7 +31,7 @@ public interface MemberMapper {
     int deleteFreeboard(@Param("idx") Integer idx);
 
     /* trade */
-    List<TradeVO> listTrade();
+    List<TradeVO> tradeList();
     TradeVO detailTrade(@Param("idx") Integer idx);
     int writeTrade(TradeVO tvo);
     int updateTrade(TradeVO tvo);

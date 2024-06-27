@@ -23,9 +23,9 @@ public class TradeController {
     @Autowired
     private TradeService tradeService;
 
-     @GetMapping("/tradeboard")
-    public List<TradeVO> listTrade(){
-        return tradeService.listTrade();
+    @GetMapping("/tradeboard")
+    public List<TradeVO> tradeList(){
+        return tradeService.tradeList();
     }
 
     @GetMapping("/detailTrade")

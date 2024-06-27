@@ -21,8 +21,8 @@ public class TradeService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public List<TradeVO> listTrade(){
-        return memberMapper.listTrade();
+    public List<TradeVO> tradeList(){
+        return memberMapper.tradeList();
     }
 
     public TradeVO detailTrade(Integer idx){
