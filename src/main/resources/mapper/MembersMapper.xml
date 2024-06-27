@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.ict.user03.mapper.MemberMapper">
+    <!-- 아이디로 users 테이블에 있는지 찾기 --> 
+    <select id="selectMember"  resultType="UserVO">
+      SELECT * FROM user_list WHERE id = #{id}
+    </select>
+
+
+    <!-- 이메일로 user 테이블에 있는지 찾기 -->
+    <select id="findUserByEmail" parameterType="String" resultType="UserVO">
+      select * from user_list where email = #{email}
+    </select>
+
+    <!-- sns가 처음 로그인 했을 때  -->
+    <insert id="insertUser" parameterType="UserVO">
+      INSERT INTO user_list (
+            id, password, email, phone, name, provider, created_at, updated_at, last_login, kakao, naver, google
+        )
+      VALUES (
+        #{id}, #{password}, #{email}, #{phone}, #{name}, #{provider}, now(), now(), now(), #{kakao}, #{naver}, #{google} 
+      )
+    </insert>
+
+    <!-- sns 가 처음이 아닐 때 업데이트 -->
+    <update id="updateUser" parameterType="UserVO">
+      UPDATE user_list
+      set last_login = NOW()
+      where id = #{id}
+    </update>
+
+    <!-- user join -->
+    <insert id="joinUser" parameterType="UserVO">
+      insert into user_list (
+        id, name, password, email, created_at, updated_at, last_login, is_activated
+      )
+      values(
+        #{id}, #{name}, #{password}, #{email}, now(), now(), now(), 0
+      )
+    </insert>
+
+    <!-- user update -->
+     <update id="updateUserInfo" parameterType="MembersVO">
+      update user_list
+      set email = #{email}
+      where idx = #{idx}
+     </update>
+
+     <!-- password change -->
+      <update id="changePassword" parameterType="MembersVO">
+        update user_list
+        set password = #{password}
+        where idx = #{idx}
+      </update>
+
+    <!-- withdrwUser -->
+     <delete id="withdrawUser" parameterType="int">
+        delete from user_list where idx = #{idx}
+     </delete>
+
+
+    <!-- Freeboard -->
+    <select id="getGuestList" resultType="FreeBoardVO">
+      select * from free_board order by idx
+    </select>
+
+    <select id="getGuestDetail" resultType="FreeBoardVO">
+      select * from free_board where idx = #{idx}
+    </select>
+
+    <insert id="writeFreeboard" parameterType="FreeBoardVO">
+      insert into free_board (
+        id, pw, title, content, created_at, updated_at
+      )
+      values (
+        #{id}, #{pw}, #{title}, #{content}, now(), now()
+      )
+    </insert>
+
+    <update id="updateFreeboard" parameterType="FreeBoardVO">
+      update free_board
+      set title = #{title},
+      content = #{content}
+      where idx = #{idx}
+    </update>
+
+    <delete id="deleteFreeboard" parameterType="int">
+      delete from free_board where idx = #{idx}
+    </delete>
+
+    <!-- Tradeboard -->
+    <select id="tradeList" resultType="TradeVO">
+      select * from trade_board order by idx
+    </select>
+
+    <select id="tradeDetail" resultType="TradeVO">
+      select * from trade_board where idx = #{idx}
+    </select>
+
+    <insert id="writeTrade" parameterType="TradeVO">
+      insert into trade_board (
+        id, pw, title, content, image, image_size, image_format, created_at, updated_at
+      )
+      values(
+        #{id}, #{pw}, #{title}, #{content}, #{image}, #{image_size}, #{image_format}, now(), now()
+      )
+    </insert>
+
+    <update id="updateTrade" parameterType="TradeVO">
+      update trade_board
+      set title = #{title},
+          content = #{content},
+          image = #{image},
+          image_size = #{image_size},
+          image_format = #{image_format},
+          updated_at = now()
+    </update>
+
+    <delete id="deleteTrade" parameterType="int">
+      delete from trade_board where idx = #{idx}
+    </delete>     
+
+</mapper>
