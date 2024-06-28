@@ -31,6 +31,7 @@ public class FreeboardController {
 
     @PostMapping("/writeFreeboard")
     public int writeFreeboard(@RequestBody FreeBoardVO fvo){
+        System.out.println("컨트롤러"+fvo.getId());
         int result = freeBoardService.writeFreeboard(fvo);
         return result;
     }

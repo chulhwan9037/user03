@@ -26,7 +26,7 @@ public class FreeBoardService {
     }
 
     public int writeFreeboard(FreeBoardVO fvo){
-
+        System.out.println("서비스"+fvo.getPw());
         String pwd = passwordEncoder.encode(fvo.getPw());
         fvo.setPw(pwd);
         return memberMapper.writeFreeboard(fvo);

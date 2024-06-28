@@ -29,14 +29,11 @@ public class TradeService {
         return memberMapper.detailTrade(idx);
     }
 
-    public int writeTrade(TradeVO tvo, MultipartFile imageFile) throws IOException{
+    public int writeTrade(TradeVO tvo) throws IOException{
+        System.out.println("서비스"+tvo.getId());
         String pwd = passwordEncoder.encode(tvo.getPw());
         tvo.setPw(pwd);
-        if(!imageFile.isEmpty()){
-            tvo.setImage(imageFile.getBytes());
-            tvo.setImage_size(imageFile.getSize());
-            tvo.setImage_format(imageFile.getContentType());
-        }
+        
         return memberMapper.writeTrade(tvo);
     }
 

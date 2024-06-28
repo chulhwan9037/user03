@@ -42,7 +42,8 @@ public class SecurityConfig {
         .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/api/login", "/api/logout", "/api/guest","/api/oauth2/**", "/api/userInfo","/api/guest","/api/guestdetail",
                         "/api/userInfo","/api/joinUser","/api/updateUserInfo","/api/changePassword","/api/withdrawUser","/api/writeFreeboard","/api/deleteFreeboard",
-                        "/api/updateFreeboard","/api/writeTrade","/api/tradeboard","/api/freeBoardDetail","/api/detailTrade","/api/writeTrade","/api/**").permitAll()
+                        "/api/updateFreeboard","/api/writeTrade","/api/tradeboard","/api/freeBoardDetail","/api/detailTrade","/api/writeTrade","/api/upload",
+                        "/api/public").permitAll()
                         .anyRequest().authenticated()
         )
         .logout(logout -> logout

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -34,8 +35,9 @@ public class TradeController {
     }
 
     @PostMapping("/writeTrade")
-    public int writeTrade(@ModelAttribute TradeVO tvo, @RequestPart("imageFile") MultipartFile imageFile) throws IOException{
-        return tradeService.writeTrade(tvo, imageFile);
+    public int writeTrade(@RequestBody TradeVO tvo) throws IOException{
+        System.out.println("컨트롤라"+tvo.getId());
+        return tradeService.writeTrade(tvo);
     }
 
     @PostMapping("/updateTrade")
