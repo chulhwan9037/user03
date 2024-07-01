@@ -64,7 +64,7 @@
 
     <!-- Freeboard -->
     <select id="getGuestList" resultType="FreeBoardVO">
-      select * from free_board order by idx
+      select * from free_board order by idx desc
     </select>
 
     <select id="getGuestDetail" resultType="FreeBoardVO">
@@ -88,12 +88,12 @@
     </update>
 
     <delete id="deleteFreeboard" parameterType="int">
-      delete from free_board where idx = #{idx}
+      delete from free_board where idx = #{idx} 
     </delete>
 
     <!-- Tradeboard -->
     <select id="tradeList" resultType="TradeVO">
-      select * from trade_board order by idx
+      select * from trade_board order by idx desc
     </select>
 
     <select id="detailTrade" resultType="TradeVO">
