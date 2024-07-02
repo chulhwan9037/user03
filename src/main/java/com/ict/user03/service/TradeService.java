@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.ict.user03.mapper.MemberMapper;
@@ -30,7 +29,6 @@ public class TradeService {
     }
 
     public int writeTrade(TradeVO tvo) throws IOException{
-        System.out.println("서비스"+tvo.getId());
         String pwd = passwordEncoder.encode(tvo.getPw());
         tvo.setPw(pwd);
         
@@ -38,7 +36,7 @@ public class TradeService {
     }
 
 
-    public int updateTrade(TradeVO tvo, MultipartFile imagFile) throws IOException{
+    public int updateTrade(TradeVO tvo) throws IOException{
         // 비번 확인 멀티파트파일
         return memberMapper.updateTrade(tvo);
     }

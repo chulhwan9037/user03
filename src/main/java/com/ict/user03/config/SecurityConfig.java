@@ -43,7 +43,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/login", "/api/logout", "/api/guest","/api/oauth2/**", "/api/userInfo","/api/guest","/api/guestdetail",
                         "/api/userInfo","/api/joinUser","/api/updateUserInfo","/api/changePassword","/api/withdrawUser","/api/writeFreeboard","/api/deleteFreeboard",
                         "/api/updateFreeboard","/api/writeTrade","/api/tradeboard","/api/freeBoardDetail","/api/detailTrade","/api/writeTrade","/api/upload",
-                        "/api/public").permitAll()
+                        "/api/public","/api/changePassword","/api/infoEdit","/api/deleteTrade","/api/updateTrade").permitAll()
                         .anyRequest().authenticated()
         )
         .logout(logout -> logout

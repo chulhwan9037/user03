@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.ict.user03.service.TradeService;
 import com.ict.user03.vo.TradeVO;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
@@ -36,18 +37,19 @@ public class TradeController {
 
     @PostMapping("/writeTrade")
     public int writeTrade(@RequestBody TradeVO tvo) throws IOException{
-        System.out.println("컨트롤라"+tvo.getId());
         return tradeService.writeTrade(tvo);
     }
 
     @PostMapping("/updateTrade")
-    public int updateTrade(@ModelAttribute TradeVO tvo, @RequestPart("imageFile") MultipartFile imageFile) throws IOException{
-        return tradeService.updateTrade(tvo, imageFile);
+    public int updateTrade(@RequestBody TradeVO tvo) throws IOException{
+        return tradeService.updateTrade(tvo);
     }
 
     @PostMapping("/deleteTrade")
-    public int deleteTrade(@RequestParam("idx") Integer idx){
+    public int deleteTrade(@RequestBody Map<String, Integer> payload){
+        Integer idx = payload.get("idx");
         int result = tradeService.deleteTrade(idx);
         return result; 
     }
+   
 }

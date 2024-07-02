@@ -45,15 +45,16 @@
     <!-- user update -->
      <update id="updateUserInfo" parameterType="MembersVO">
       update user_list
-      set email = #{email}
-      where idx = #{idx}
+      set email = #{email},
+          phone = #{phone}
+      where id = #{id}
      </update>
 
      <!-- password change -->
       <update id="changePassword" parameterType="MembersVO">
         update user_list
         set password = #{password}
-        where idx = #{idx}
+        where id = #{id}
       </update>
 
     <!-- withdrwUser -->
@@ -117,10 +118,13 @@
           image_size = #{image_size},
           image_format = #{image_format},
           updated_at = now()
+      where idx = #{idx}
     </update>
 
     <delete id="deleteTrade" parameterType="int">
       delete from trade_board where idx = #{idx}
     </delete>     
+
+    <!-- userBoard -->
 
 </mapper>

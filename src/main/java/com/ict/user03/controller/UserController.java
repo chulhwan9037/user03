@@ -24,7 +24,7 @@ public class UserController {
         return result;
     }
 
-    @PostMapping("/updateUserInfo")
+    @PostMapping("/infoEdit")
     public int updateUserInfo(@RequestBody MembersVO mvo){
         int result = usersService.updateUserInfo(mvo);
         return result;

@@ -64,7 +64,6 @@ public class AuthController {
     @GetMapping("/userInfo")
     public ResponseEntity<UserVO> getUserInfo(@RequestParam("token") String token) throws Exception {
         // 토큰 가지고 id를 추출
-        System.out.println("여기오민ㅇ?");
         String id = jwtUtil.extractUsername(token);
         // 추출한 id로 사용자 정보 추출
         UserVO user = userDetailsService.getUserDetail(id);
